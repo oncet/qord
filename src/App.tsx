@@ -7,7 +7,7 @@ import Layout from "./components/Layout";
 
 function App() {
   return (
-    <Container>
+    <Container p="0">
       <Layout>
         <Router>
           <Switch>

@@ -17,27 +17,29 @@ function Layout({ children }: LayoutProps) {
   const { toggleColorMode } = useColorMode();
 
   return (
-    <Grid border="1px solid" gridTemplateRows="auto 1fr auto" height="100vh">
-      <Flex border="1px solid" justifyContent="space-between">
-        <Center border="1px solid" p="2">
+    <Grid gridTemplateRows="auto 1fr auto" height="100vh">
+      <Flex borderBottom="1px solid" justifyContent="space-between">
+        <Center borderRight="1px solid" p="2">
           Logo
         </Center>
-        <Flex border="1px solid">
-          <Center border="1px solid" p="2">
+        <Flex>
+          <Center borderLeft="1px solid" p="2">
             Cart
           </Center>
-          <Center border="1px solid" p="2">
+          <Center borderLeft="1px solid" p="2">
             User
-          </Center>
-          <Center>
-            <Button onClick={toggleColorMode}>Dark mode</Button>
           </Center>
         </Flex>
       </Flex>
-      <GridItem border="1px solid" overflowY="auto">
+      <GridItem overflowY="auto" py="2" px="4">
         {children}
       </GridItem>
-      <Box border="1px solid">Footer</Box>
+      <Flex borderTop="1px solid" justifyContent="space-between" p="2">
+        <Center p="2">Footer</Center>
+        <Center>
+          <Button onClick={toggleColorMode}>Dark mode</Button>
+        </Center>
+      </Flex>
     </Grid>
   );
 }
