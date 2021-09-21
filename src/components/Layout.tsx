@@ -17,7 +17,7 @@ function Layout({ children }: LayoutProps) {
   const { toggleColorMode } = useColorMode();
 
   return (
-    <Grid gridTemplateRows="auto 1fr auto" minHeight="100vh">
+    <Grid gridTemplateRows="auto 1fr auto" height="100vh">
       <Flex borderBottom="1px solid" justifyContent="space-between">
         <Center borderRight="1px solid" p="2">
           Logo
