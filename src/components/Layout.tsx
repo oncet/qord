@@ -17,8 +17,14 @@ function Layout({ children }: LayoutProps) {
   const { toggleColorMode } = useColorMode();
 
   return (
-    <Grid gridTemplateRows="auto 1fr auto" minHeight="100vh">
-      <Flex borderBottom="1px solid" justifyContent="space-between">
+    <Flex flexDirection="column">
+      <Flex
+        borderBottom="1px solid"
+        justifyContent="space-between"
+        position="fixed"
+        width="100%"
+        background="gray.800"
+      >
         <Center borderRight="1px solid" p="2">
           Logo
         </Center>
@@ -31,16 +37,24 @@ function Layout({ children }: LayoutProps) {
           </Center>
         </Flex>
       </Flex>
-      <GridItem overflowY="auto" py="2" px="4">
+      <Box overflowY="auto" px="4" pt="12" pb="20">
         {children}
-      </GridItem>
-      <Flex borderTop="1px solid" justifyContent="space-between" p="2">
+      </Box>
+      <Flex
+        borderTop="1px solid"
+        justifyContent="space-between"
+        p="2"
+        position="fixed"
+        bottom="0"
+        width="100%"
+        background="gray.800"
+      >
         <Center p="2">Footer</Center>
         <Center>
           <Button onClick={toggleColorMode}>Dark mode</Button>
         </Center>
       </Flex>
-    </Grid>
+    </Flex>
   );
 }
 
