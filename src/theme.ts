@@ -5,6 +5,20 @@ const config: ThemeConfig = {
   useSystemColorMode: true,
 };
 
-const theme = extendTheme({ config });
+const theme = extendTheme({
+  config,
+  components: {
+    Heading: {
+      baseStyle: {
+        mb: 3,
+      },
+    },
+    Text: {
+      baseStyle: {
+        mb: 2,
+      },
+    },
+  },
+});
 
 export default theme;
