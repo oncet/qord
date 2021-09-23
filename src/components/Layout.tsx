@@ -53,7 +53,7 @@ function Layout({ children }: LayoutProps) {
           </Flex>
         </Container>
       </Box>
-      <Box overflowY="auto" px="4" mt="16" pb="20">
+      <Box overflowY="auto" px="4" mt="16" pt="2" pb="20">
         {children}
       </Box>
       <Box position="fixed" left="0" right="0" bottom="0" background="gray.900">
