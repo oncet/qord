@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Box,
   Center,
   Container,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
   Flex,
   IconButton,
   useDisclosure,
@@ -11,6 +18,7 @@ import { FaBars, FaShoppingCart } from "react-icons/fa";
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef<HTMLButtonElement>(null);
 
   return (
     <Box
@@ -30,6 +38,8 @@ const Header = () => {
               isRound
               size="lg"
               variant="ghost"
+              onClick={onOpen}
+              ref={btnRef}
             />
           </Center>
           <Center>
@@ -43,6 +53,20 @@ const Header = () => {
           </Center>
         </Flex>
       </Container>
+      <Drawer
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Header</DrawerHeader>
+          <DrawerBody>Body</DrawerBody>
+          <DrawerFooter>Footer</DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </Box>
   );
 };
