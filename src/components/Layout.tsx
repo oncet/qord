@@ -11,7 +11,7 @@ import {
   Image,
   useColorMode,
 } from "@chakra-ui/react";
-import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 
 import logo from "../logo.svg";
 
@@ -35,21 +35,23 @@ function Layout({ children }: LayoutProps) {
         <Container p="0">
           <Flex justifyContent="space-between">
             <Center>
-              <Image src={logo} alt="Logo" />
+              <IconButton
+                aria-label="Cart"
+                icon={<FaBars />}
+                isRound
+                size="lg"
+                variant="ghost"
+              />
             </Center>
-            <HStack spacing="4">
-              <Center>
-                <IconButton
-                  aria-label="Cart"
-                  icon={<FaShoppingCart />}
-                  isRound
-                  size="lg"
-                />
-              </Center>
-              <Center>
-                <Avatar name="Camilo Rivera" size="md" />
-              </Center>
-            </HStack>
+            <Center>
+              <IconButton
+                aria-label="Cart"
+                icon={<FaShoppingCart />}
+                isRound
+                size="lg"
+                variant="outline"
+              />
+            </Center>
           </Flex>
         </Container>
       </Box>
