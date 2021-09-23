@@ -1,12 +1,16 @@
 import React from "react";
 import {
+  Avatar,
   Box,
   Button,
   Center,
   Container,
   Flex,
+  HStack,
+  IconButton,
   useColorMode,
 } from "@chakra-ui/react";
+import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -17,18 +21,30 @@ function Layout({ children }: LayoutProps) {
 
   return (
     <Box>
-      <Box position="fixed" left="0" right="0" top="0" background="gray.900">
+      <Box
+        position="fixed"
+        left="0"
+        right="0"
+        top="0"
+        background="gray.900"
+        p="2"
+      >
         <Container p="0">
           <Flex justifyContent="space-between">
-            <Center p="2">Logo</Center>
-            <Flex>
-              <Center borderLeft="1px solid" p="2">
-                Cart
+            <Center border="1px solid">Logo</Center>
+            <HStack spacing="4">
+              <Center>
+                <IconButton
+                  aria-label="Cart"
+                  icon={<FaShoppingCart />}
+                  isRound
+                  size="lg"
+                />
               </Center>
-              <Center borderLeft="1px solid" p="2">
-                User
+              <Center>
+                <Avatar name="Camilo Rivera" size="md" />
               </Center>
-            </Flex>
+            </HStack>
           </Flex>
         </Container>
       </Box>
