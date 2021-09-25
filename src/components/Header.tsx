@@ -14,7 +14,9 @@ import {
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FaBars, FaShoppingCart } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
+
+import CartButton from "./CartButton";
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,13 +45,7 @@ const Header = () => {
             />
           </Center>
           <Center>
-            <IconButton
-              aria-label="Cart"
-              icon={<FaShoppingCart />}
-              isRound
-              size="lg"
-              variant="outline"
-            />
+            <CartButton />
           </Center>
         </Flex>
       </Container>
