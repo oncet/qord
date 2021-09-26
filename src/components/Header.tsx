@@ -84,18 +84,19 @@ const Header = () => {
         placement="right"
         onClose={cartMenuOnClose}
         finalFocusRef={cartMenuButtonRef}
+        size="md"
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Tu pedido</DrawerHeader>
-          <DrawerBody>
+          <DrawerBody px="0">
             <CartList />
           </DrawerBody>
           <DrawerFooter>
             <HStack justify="space-between" width="full">
               <Text m="0">
-                <strong>Total: $500</strong>
+                <strong>Total: $1000</strong>
               </Text>
               <Button rightIcon={<FaArrowRight />}>Pagar ahora</Button>
             </HStack>

@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
+  Center,
   HStack,
-  Icon,
+  IconButton,
   Input,
-  List,
-  ListItem,
-  Text,
+  Table,
+  Tbody,
+  Td,
+  Tr,
   useNumberInput,
 } from "@chakra-ui/react";
-import { FaMinus, FaPlus, FaShoppingCart, FaTimes } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 
 const CartList = () => {
+  const [expanded, setExpanded] = useState(false);
+
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({ min: 0, max: 99, defaultValue: 1 });
 
@@ -20,23 +24,103 @@ const CartList = () => {
   const input = getInputProps();
 
   return (
-    <List spacing="4">
-      <ListItem>
-        <HStack justify="space-between">
-          <Text m="0">
-            Hamburguesa Manush <Icon as={FaTimes} /> 1
-          </Text>
-          <Text m="0">
-            <strong>$10.00</strong>
-          </Text>
-        </HStack>
-      </ListItem>
-      <ListItem>
-        <Text m="0">
-          Pizza Marina <Icon as={FaTimes} /> 1
-        </Text>
-      </ListItem>
-    </List>
+    <Table size="sm" maxW="100%">
+      <Tbody>
+        <Tr>
+          <Td>Hamburguesa Manush</Td>
+          <Td>
+            <Button onClick={() => setExpanded(!expanded)} size="sm">
+              3
+            </Button>
+          </Td>
+          <Td>$1500</Td>
+          <Td>
+            <IconButton
+              aria-label="Editar"
+              size="sm"
+              variant="outline"
+              isRound
+              icon={<FaTimes />}
+            />
+          </Td>
+        </Tr>
+        {expanded && (
+          <Tr background="gray.800">
+            <Td colSpan={4}>
+              <Center>
+                <HStack>
+                  <IconButton
+                    {...dec}
+                    icon={<FaMinus />}
+                    aria-label="Quitar"
+                    size="sm"
+                  />
+                  <Input {...input} textAlign="center" width="16" size="sm" />
+                  <IconButton
+                    {...inc}
+                    icon={<FaPlus />}
+                    aria-label="Agregar"
+                    size="sm"
+                  />
+                </HStack>
+              </Center>
+            </Td>
+          </Tr>
+        )}
+        <Tr>
+          <Td>Pizza Marina</Td>
+          <Td>
+            <Button onClick={() => setExpanded(!expanded)} size="sm">
+              1
+            </Button>
+          </Td>
+          <Td>$500</Td>
+          <Td>
+            <IconButton
+              aria-label="Editar"
+              size="sm"
+              variant="outline"
+              isRound
+              icon={<FaTimes />}
+            />
+          </Td>
+        </Tr>
+      </Tbody>
+    </Table>
+    // <List spacing="3">
+    //   <ListItem>
+    //     <HStack justify="space-between">
+    //       <Text m="0">Hamburguesa Manush</Text>
+    //       <Text m="0">1</Text>
+    //       <Text m="0">
+    //         <strong>$500</strong>
+    //       </Text>
+    //       <IconButton
+    //         aria-label="Editar"
+    //         size="sm"
+    //         variant="outline"
+    //         isRound
+    //         icon={<FaPen />}
+    //       />
+    //     </HStack>
+    //   </ListItem>
+    //   <ListItem>
+    //     <HStack justify="space-between">
+    //       <Text m="0">Pizza Marina</Text>
+    //       <Text m="0">1</Text>
+    //       <Text m="0">
+    //         <strong>$500</strong>
+    //       </Text>
+    //       <IconButton
+    //         aria-label="Editar"
+    //         size="sm"
+    //         variant="outline"
+    //         isRound
+    //         icon={<FaPen />}
+    //       />
+    //     </HStack>
+    //   </ListItem>
+    // </List>
   );
 };
 
