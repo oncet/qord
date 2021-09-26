@@ -19,8 +19,20 @@ import { FaBars } from "react-icons/fa";
 import CartButton from "./CartButton";
 
 const Header = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef<HTMLButtonElement>(null);
+  const {
+    isOpen: mainMenuIsOpen,
+    onOpen: mainMenuOnOpen,
+    onClose: mainMenuOnClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: orderMenuIsOpen,
+    onOpen: orderMenuOnOpen,
+    onClose: orderMenuOnClose,
+  } = useDisclosure();
+
+  const mainMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const orderMenuButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <Box
@@ -35,30 +47,44 @@ const Header = () => {
         <Flex justifyContent="space-between">
           <Center>
             <IconButton
-              aria-label="Cart"
+              aria-label="Main menu"
               icon={<FaBars />}
               isRound
               size="lg"
               variant="ghost"
-              onClick={onOpen}
-              ref={btnRef}
+              onClick={mainMenuOnOpen}
+              ref={mainMenuButtonRef}
             />
           </Center>
           <Center>
-            <CartButton />
+            <CartButton onClick={orderMenuOnOpen} ref={orderMenuButtonRef} />
           </Center>
         </Flex>
       </Container>
       <Drawer
-        isOpen={isOpen}
+        isOpen={mainMenuIsOpen}
         placement="left"
-        onClose={onClose}
-        finalFocusRef={btnRef}
+        onClose={mainMenuOnClose}
+        finalFocusRef={orderMenuButtonRef}
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Header</DrawerHeader>
+          <DrawerHeader>Left</DrawerHeader>
+          <DrawerBody>Body</DrawerBody>
+          <DrawerFooter>Footer</DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+      <Drawer
+        isOpen={orderMenuIsOpen}
+        placement="right"
+        onClose={orderMenuOnClose}
+        finalFocusRef={orderMenuButtonRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Right</DrawerHeader>
           <DrawerBody>Body</DrawerBody>
           <DrawerFooter>Footer</DrawerFooter>
         </DrawerContent>
