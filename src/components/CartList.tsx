@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import {
   Box,
-  Button,
-  Center,
   HStack,
   IconButton,
-  Input,
   Text,
-  Table,
-  Tbody,
-  Td,
-  Tr,
   useNumberInput,
   Heading,
   Icon,
@@ -41,18 +34,21 @@ const CartList = () => {
           <IconButton
             icon={<FaTrash />}
             size="lg"
+            isRound
             aria-label="Eliminar de la lista"
           />
           <IconButton
             icon={<FaMinus />}
             {...dec}
             size="lg"
+            isRound
             aria-label="Quitar uno"
           />
           <IconButton
             icon={<FaPlus />}
             {...inc}
             size="lg"
+            isRound
             aria-label="Agregar uno"
           />
         </HStack>
