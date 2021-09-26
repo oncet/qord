@@ -11,12 +11,15 @@ import {
 import { FaMinus, FaPlus, FaTimes, FaTrash } from "react-icons/fa";
 
 const CartList = () => {
-  const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-    useNumberInput({ min: 1, max: 99, defaultValue: 1 });
+  const {
+    getInputProps,
+    getIncrementButtonProps,
+    getDecrementButtonProps,
+    value,
+  } = useNumberInput({ min: 1, max: 99, defaultValue: 1 });
 
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
-  const input = getInputProps();
 
   return (
     <Box background="gray.900" borderRadius="md" px="2" pt="1" pb="2" mx="2">
@@ -25,7 +28,7 @@ const CartList = () => {
         <HStack spacing="3">
           <Icon as={FaTimes} boxSize="6" />
           <Text fontSize="3xl">
-            <strong>{input.value}</strong>
+            <strong>{value}</strong>
           </Text>
         </HStack>
       </HStack>
