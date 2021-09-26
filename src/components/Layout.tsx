@@ -24,7 +24,7 @@ function Layout({ children }: LayoutProps) {
         {children}
       </Box>
       <Box position="fixed" left="0" right="0" bottom="0" background="gray.900">
-        <Container p="0">
+        <Container p="0" maxW="container.lg">
           <Flex justifyContent="space-between" p="2">
             <Center p="2">Footer</Center>
             <Center>

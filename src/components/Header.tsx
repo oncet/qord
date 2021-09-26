@@ -47,7 +47,7 @@ const Header = () => {
       background="gray.900"
       p="2"
     >
-      <Container p="0">
+      <Container p="0" maxW="container.lg">
         <Flex justifyContent="space-between">
           <Center>
             <IconButton
@@ -95,10 +95,12 @@ const Header = () => {
           </DrawerBody>
           <DrawerFooter>
             <HStack justify="space-between" width="full">
-              <Text m="0">
+              <Text m="0" fontSize="lg">
                 <strong>Total: $1000</strong>
               </Text>
-              <Button rightIcon={<FaArrowRight />}>Pagar ahora</Button>
+              <Button size="lg" rightIcon={<FaArrowRight />}>
+                Pagar ahora
+              </Button>
             </HStack>
           </DrawerFooter>
         </DrawerContent>
