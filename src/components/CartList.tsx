@@ -1,126 +1,66 @@
 import React, { useState } from "react";
 import {
+  Box,
   Button,
   Center,
   HStack,
   IconButton,
   Input,
+  Text,
   Table,
   Tbody,
   Td,
   Tr,
   useNumberInput,
+  Heading,
+  Icon,
 } from "@chakra-ui/react";
-import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTimes, FaTrash } from "react-icons/fa";
 
 const CartList = () => {
-  const [expanded, setExpanded] = useState(false);
-
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-    useNumberInput({ min: 0, max: 99, defaultValue: 1 });
+    useNumberInput({ min: 1, max: 99, defaultValue: 1 });
 
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
   const input = getInputProps();
 
   return (
-    <Table size="sm" maxW="100%">
-      <Tbody>
-        <Tr>
-          <Td>Hamburguesa Manush</Td>
-          <Td>
-            <Button onClick={() => setExpanded(!expanded)} size="sm">
-              3
-            </Button>
-          </Td>
-          <Td>$1500</Td>
-          <Td>
-            <IconButton
-              aria-label="Editar"
-              size="sm"
-              variant="outline"
-              isRound
-              icon={<FaTimes />}
-            />
-          </Td>
-        </Tr>
-        {expanded && (
-          <Tr background="gray.800">
-            <Td colSpan={4}>
-              <Center>
-                <HStack>
-                  <IconButton
-                    {...dec}
-                    icon={<FaMinus />}
-                    aria-label="Quitar"
-                    size="sm"
-                  />
-                  <Input {...input} textAlign="center" width="16" size="sm" />
-                  <IconButton
-                    {...inc}
-                    icon={<FaPlus />}
-                    aria-label="Agregar"
-                    size="sm"
-                  />
-                </HStack>
-              </Center>
-            </Td>
-          </Tr>
-        )}
-        <Tr>
-          <Td>Pizza Marina</Td>
-          <Td>
-            <Button onClick={() => setExpanded(!expanded)} size="sm">
-              1
-            </Button>
-          </Td>
-          <Td>$500</Td>
-          <Td>
-            <IconButton
-              aria-label="Editar"
-              size="sm"
-              variant="outline"
-              isRound
-              icon={<FaTimes />}
-            />
-          </Td>
-        </Tr>
-      </Tbody>
-    </Table>
-    // <List spacing="3">
-    //   <ListItem>
-    //     <HStack justify="space-between">
-    //       <Text m="0">Hamburguesa Manush</Text>
-    //       <Text m="0">1</Text>
-    //       <Text m="0">
-    //         <strong>$500</strong>
-    //       </Text>
-    //       <IconButton
-    //         aria-label="Editar"
-    //         size="sm"
-    //         variant="outline"
-    //         isRound
-    //         icon={<FaPen />}
-    //       />
-    //     </HStack>
-    //   </ListItem>
-    //   <ListItem>
-    //     <HStack justify="space-between">
-    //       <Text m="0">Pizza Marina</Text>
-    //       <Text m="0">1</Text>
-    //       <Text m="0">
-    //         <strong>$500</strong>
-    //       </Text>
-    //       <IconButton
-    //         aria-label="Editar"
-    //         size="sm"
-    //         variant="outline"
-    //         isRound
-    //         icon={<FaPen />}
-    //       />
-    //     </HStack>
-    //   </ListItem>
-    // </List>
+    <Box background="gray.900" borderRadius="md" px="2" pt="1" pb="2" mx="2">
+      <HStack justify="space-between" mb="2">
+        <Heading mb="0">Hamburguesa Manush</Heading>
+        <HStack spacing="3">
+          <Icon as={FaTimes} boxSize="6" />
+          <Text fontSize="3xl">
+            <strong>{input.value}</strong>
+          </Text>
+        </HStack>
+      </HStack>
+      <HStack justify="space-between">
+        <HStack spacing="4">
+          <IconButton
+            icon={<FaTrash />}
+            size="lg"
+            aria-label="Eliminar de la lista"
+          />
+          <IconButton
+            icon={<FaMinus />}
+            {...dec}
+            size="lg"
+            aria-label="Quitar uno"
+          />
+          <IconButton
+            icon={<FaPlus />}
+            {...inc}
+            size="lg"
+            aria-label="Agregar uno"
+          />
+        </HStack>
+        <Text fontSize="2xl" letterSpacing="wide">
+          <strong>$1500</strong>
+        </Text>
+      </HStack>
+    </Box>
   );
 };
 
