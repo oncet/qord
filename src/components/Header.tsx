@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import {
   Box,
+  Button,
   Center,
   Container,
   Drawer,
@@ -11,12 +12,15 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  HStack,
   IconButton,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { FaBars } from "react-icons/fa";
 
 import CartButton from "./CartButton";
+import CartList from "./CartList";
 
 const Header = () => {
   const {
@@ -26,13 +30,13 @@ const Header = () => {
   } = useDisclosure();
 
   const {
-    isOpen: orderMenuIsOpen,
-    onOpen: orderMenuOnOpen,
-    onClose: orderMenuOnClose,
+    isOpen: cartMenuIsOpen,
+    onOpen: cartMenuOnOpen,
+    onClose: cartMenuOnClose,
   } = useDisclosure();
 
   const mainMenuButtonRef = useRef<HTMLButtonElement>(null);
-  const orderMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const cartMenuButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <Box
@@ -57,7 +61,7 @@ const Header = () => {
             />
           </Center>
           <Center>
-            <CartButton onClick={orderMenuOnOpen} ref={orderMenuButtonRef} />
+            <CartButton onClick={cartMenuOnOpen} ref={cartMenuButtonRef} />
           </Center>
         </Flex>
       </Container>
@@ -65,7 +69,7 @@ const Header = () => {
         isOpen={mainMenuIsOpen}
         placement="left"
         onClose={mainMenuOnClose}
-        finalFocusRef={orderMenuButtonRef}
+        finalFocusRef={cartMenuButtonRef}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -76,17 +80,24 @@ const Header = () => {
         </DrawerContent>
       </Drawer>
       <Drawer
-        isOpen={orderMenuIsOpen}
+        isOpen={cartMenuIsOpen}
         placement="right"
-        onClose={orderMenuOnClose}
-        finalFocusRef={orderMenuButtonRef}
+        onClose={cartMenuOnClose}
+        finalFocusRef={cartMenuButtonRef}
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Right</DrawerHeader>
-          <DrawerBody>Body</DrawerBody>
-          <DrawerFooter>Footer</DrawerFooter>
+          <DrawerHeader>Tu pedido</DrawerHeader>
+          <DrawerBody>
+            <CartList />
+          </DrawerBody>
+          <DrawerFooter>
+            <HStack justify="space-between" width="full">
+              <Text m="0">Total: $500</Text>
+              <Button>Pagar ahora</Button>
+            </HStack>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </Box>
