@@ -17,7 +17,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FaBars } from "react-icons/fa";
+import { FaArrowRight, FaBars } from "react-icons/fa";
 
 import CartButton from "./CartButton";
 import CartList from "./CartList";
@@ -94,8 +94,10 @@ const Header = () => {
           </DrawerBody>
           <DrawerFooter>
             <HStack justify="space-between" width="full">
-              <Text m="0">Total: $500</Text>
-              <Button>Pagar ahora</Button>
+              <Text m="0">
+                <strong>Total: $500</strong>
+              </Text>
+              <Button rightIcon={<FaArrowRight />}>Pagar ahora</Button>
             </HStack>
           </DrawerFooter>
         </DrawerContent>

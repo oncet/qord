@@ -20,23 +20,19 @@ const CartList = () => {
   const input = getInputProps();
 
   return (
-    <List>
+    <List spacing="4">
       <ListItem>
-        <Text>
-          Hamburguesa Manush <Icon as={FaTimes} /> 1
-        </Text>
-        {/* <HStack>
-          <Button size="sm" {...dec}>
-            <FaMinus />
-          </Button>
-          <Input size="sm" textAlign="center" {...input} width="10" />
-          <Button size="sm" {...inc}>
-            <FaPlus />
-          </Button>
-        </HStack> */}
+        <HStack justify="space-between">
+          <Text m="0">
+            Hamburguesa Manush <Icon as={FaTimes} /> 1
+          </Text>
+          <Text m="0">
+            <strong>$10.00</strong>
+          </Text>
+        </HStack>
       </ListItem>
       <ListItem>
-        <Text>
+        <Text m="0">
           Pizza Marina <Icon as={FaTimes} /> 1
         </Text>
       </ListItem>
