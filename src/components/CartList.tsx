@@ -22,43 +22,100 @@ const CartList = () => {
   const dec = getDecrementButtonProps();
 
   return (
-    <Box background="gray.900" borderRadius="md" px="2" pt="1" pb="2" mx="2">
-      <HStack justify="space-between" mb="2">
-        <Heading mb="0">Hamburguesa Manush</Heading>
-        <HStack spacing="3">
-          <Icon as={FaTimes} boxSize="6" />
-          <Text fontSize="3xl">
-            <strong>{value}</strong>
+    <Box>
+      <Box
+        background="gray.900"
+        borderRadius="md"
+        px="2"
+        pt="1"
+        pb="2"
+        mx="2"
+        mb="2"
+      >
+        <HStack justify="space-between" mb="2">
+          <Heading mb="0">Hamburguesa Manush</Heading>
+          <HStack spacing="3">
+            <Icon as={FaTimes} boxSize="6" />
+            <Text fontSize="3xl">
+              <strong>{value}</strong>
+            </Text>
+          </HStack>
+        </HStack>
+        <HStack justify="space-between">
+          <HStack spacing="4">
+            <IconButton
+              icon={<FaTrash />}
+              size="lg"
+              isRound
+              aria-label="Eliminar de la lista"
+            />
+            <IconButton
+              icon={<FaMinus />}
+              {...dec}
+              size="lg"
+              isRound
+              aria-label="Quitar uno"
+            />
+            <IconButton
+              icon={<FaPlus />}
+              {...inc}
+              size="lg"
+              isRound
+              aria-label="Agregar uno"
+            />
+          </HStack>
+          <Text fontSize="2xl" letterSpacing="wide">
+            <strong>$1500</strong>
           </Text>
         </HStack>
-      </HStack>
-      <HStack justify="space-between">
-        <HStack spacing="4">
-          <IconButton
-            icon={<FaTrash />}
-            size="lg"
-            isRound
-            aria-label="Eliminar de la lista"
-          />
-          <IconButton
-            icon={<FaMinus />}
-            {...dec}
-            size="lg"
-            isRound
-            aria-label="Quitar uno"
-          />
-          <IconButton
-            icon={<FaPlus />}
-            {...inc}
-            size="lg"
-            isRound
-            aria-label="Agregar uno"
-          />
+      </Box>
+      <Box
+        background="gray.900"
+        borderRadius="md"
+        px="2"
+        pt="1"
+        pb="2"
+        mx="2"
+        // width="100%"
+        display="block"
+      >
+        <HStack justify="space-between" mb="2">
+          <Heading mb="0">Pizza Amapola</Heading>
+          <HStack spacing="3">
+            <Icon as={FaTimes} boxSize="6" />
+            <Text fontSize="3xl">
+              <strong>{value}</strong>
+            </Text>
+          </HStack>
         </HStack>
-        <Text fontSize="2xl" letterSpacing="wide">
-          <strong>$1500</strong>
-        </Text>
-      </HStack>
+        <HStack justify="space-between">
+          <HStack spacing="4">
+            <IconButton
+              icon={<FaTrash />}
+              size="lg"
+              isRound
+              aria-label="Eliminar de la lista"
+            />
+            <IconButton
+              icon={<FaMinus />}
+              {...dec}
+              size="lg"
+              isRound
+              aria-label="Quitar uno"
+            />
+            <IconButton
+              icon={<FaPlus />}
+              {...inc}
+              size="lg"
+              isRound
+              aria-label="Agregar uno"
+            />
+          </HStack>
+          <Text fontSize="2xl" letterSpacing="wide">
+            <strong>$1500</strong>
+          </Text>
+        </HStack>
+      </Box>
     </Box>
   );
 };
