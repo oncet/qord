@@ -9,10 +9,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 
+import imgUrl from "../images/burguer.jpg";
 import Establishment from "./pages/Establishment";
 import Layout from "./components/Layout";
-import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
                 <Heading mb="0" size="lg">
                   Hamburguesa Manush
                 </Heading>
-                <Image src="/images/burguer.jpg" alt="Segun Adebayo" />
+                <Image src={imgUrl} alt="Segun Adebayo" />
                 <HStack justifyContent="space-between">
                   <HStack spacing="3">
                     <HStack
