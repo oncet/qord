@@ -10,16 +10,19 @@ import {
 } from "@chakra-ui/react";
 import { FaMinus, FaPlus, FaTimes, FaTrash } from "react-icons/fa";
 
-const CartList = () => {
+import useCart from "../hooks/useCart";
+
+const CartContents = () => {
+  const { addItem, removeItem } = useCart();
+
+  const items = useCart((state) => state.items);
+
   const {
     getInputProps,
     getIncrementButtonProps,
     getDecrementButtonProps,
     value,
   } = useNumberInput({ min: 1, max: 99, defaultValue: 1 });
-
-  const inc = getIncrementButtonProps();
-  const dec = getDecrementButtonProps();
 
   return (
     <Box>
@@ -51,14 +54,23 @@ const CartList = () => {
             />
             <IconButton
               icon={<FaMinus />}
-              {...dec}
+              onClick={() => {
+                removeItem("hamburguesa-manush");
+              }}
               size="lg"
               isRound
               aria-label="Quitar uno"
             />
             <IconButton
               icon={<FaPlus />}
-              {...inc}
+              onClick={() => {
+                addItem({
+                  id: "hamburguesa-manush",
+                  name: "Hamburguesa Manush",
+                  price: 500,
+                  quantity: 1,
+                });
+              }}
               size="lg"
               isRound
               aria-label="Agregar uno"
@@ -76,7 +88,6 @@ const CartList = () => {
         pt="1"
         pb="2"
         mx="2"
-        // width="100%"
         display="block"
       >
         <HStack justify="space-between" mb="2">
@@ -98,14 +109,12 @@ const CartList = () => {
             />
             <IconButton
               icon={<FaMinus />}
-              {...dec}
               size="lg"
               isRound
               aria-label="Quitar uno"
             />
             <IconButton
               icon={<FaPlus />}
-              {...inc}
               size="lg"
               isRound
               aria-label="Agregar uno"
@@ -120,4 +129,4 @@ const CartList = () => {
   );
 };
 
-export default CartList;
+export default CartContents;

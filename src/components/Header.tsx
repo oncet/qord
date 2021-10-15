@@ -20,7 +20,7 @@ import {
 import { FaArrowRight, FaBars } from "react-icons/fa";
 
 import CartButton from "./CartButton";
-import CartList from "./CartList";
+import CartList from "./CartContents";
 
 const Header = () => {
   const {
