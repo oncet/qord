@@ -26,18 +26,14 @@ function App() {
               <VStack
                 background="gray.900"
                 borderRadius="md"
-                px="2"
-                pt="1"
-                pb="2"
-                minHeight="9em"
                 justifyContent="space-between"
                 alignItems="left"
               >
-                <Heading mb="0" size="lg">
+                <Heading mb="0" size="lg" pt="1" px="2">
                   Hamburguesa Manush
                 </Heading>
                 <Image src={imgUrl} alt="Segun Adebayo" />
-                <HStack justifyContent="space-between">
+                <HStack justifyContent="space-between" pb="2" px="2">
                   <HStack spacing="3">
                     <HStack
                       alignItems="baseline"
