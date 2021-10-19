@@ -14,18 +14,83 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Radio,
+  RadioGroup,
   Text,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 
-import imgUrl from "../images/burguer.jpg";
 import Establishment from "./pages/Establishment";
 import Layout from "./components/Layout";
+import MenuItemCard from "./components/MenuItemCard";
+import MenuItemModal from "./components/MenuItemModal";
+
+import imgUrl from "../images/burguer.jpg";
 
 function App() {
+  const [currentItem, setCurrentItem] = useState<{
+    id: number;
+    name: string;
+    image?: string;
+    imageAlt?: string;
+    description: string;
+    price: number;
+    variants: {
+      id: number;
+      name: string;
+      description: string;
+      price: number;
+    }[];
+  }>();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const items = [
+    {
+      id: 1,
+      name: "Hamburguesa Manush",
+      image: imgUrl,
+      imageAlt: "Alt",
+      description:
+        "Voluptate excepteur officia dolore quis nostrud proident velit consequat ad exercitation.",
+      price: 600,
+      variants: [
+        {
+          id: 1,
+          name: "Clásica",
+          description:
+            "Voluptate excepteur officia dolore quis nostrud proident velit consequat ad exercitation.",
+          price: 600,
+        },
+        {
+          id: 2,
+          name: "Spicy",
+          description:
+            "Voluptate excepteur officia dolore quis nostrud proident velit consequat ad exercitation.",
+          price: 650,
+        },
+      ],
+    },
+    {
+      id: 2,
+      name: "Pizza Amapola",
+      image: imgUrl,
+      imageAlt: "Alt",
+      description:
+        "Voluptate excepteur officia dolore quis nostrud proident velit consequat ad exercitation.",
+      price: 800,
+      variants: [
+        {
+          id: 1,
+          name: "Clásica",
+          description:
+            "Voluptate excepteur officia dolore quis nostrud proident velit consequat ad exercitation.",
+          price: 800,
+        },
+      ],
+    },
+  ];
 
   return (
     <Container p="0" maxW="container.lg">
@@ -34,89 +99,23 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Heading>Menú</Heading>
-              <VStack
-                background="gray.900"
-                borderRadius="md"
-                justifyContent="space-between"
-                alignItems="left"
-                role="button"
-                onClick={onOpen}
-              >
-                <Heading mb="0" size="lg" pt="1" px="2">
-                  Hamburguesa Manush
-                </Heading>
-                <Image src={imgUrl} alt="Segun Adebayo" />
-                <HStack justifyContent="space-between" pb="2" px="2">
-                  <HStack spacing="3">
-                    <HStack
-                      alignItems="baseline"
-                      fontSize="2xl"
-                      letterSpacing="wide"
-                      spacing="1"
-                    >
-                      <Icon as={FaTimes} boxSize="4" />
-                      <strong>2</strong>
-                    </HStack>
-                    <Text
-                      as="span"
-                      fontSize="xl"
-                      fontWeight="bold"
-                      color="gray.400"
-                    >
-                      $1200
-                    </Text>
-                  </HStack>
-                  <Text fontSize="2xl">
-                    <strong>$600</strong>
-                  </Text>
-                </HStack>
+              <VStack spacing={4}>
+                {items.map((item) => (
+                  <MenuItemCard
+                    key={item.id}
+                    item={item}
+                    onClick={() => {
+                      setCurrentItem(item);
+                      onOpen();
+                    }}
+                  />
+                ))}
               </VStack>
-              <Modal isOpen={isOpen} onClose={onClose} isCentered>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>Hamburguesa Manush</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <Text>
-                      Voluptate excepteur officia dolore quis nostrud proident
-                      velit consequat ad exercitation.
-                    </Text>
-                    <Image src={imgUrl} alt="Segun Adebayo" />
-
-                    <HStack justifyContent="space-between" pb="2" px="2">
-                      <HStack spacing="3">
-                        <HStack
-                          alignItems="baseline"
-                          fontSize="2xl"
-                          letterSpacing="wide"
-                          spacing="1"
-                        >
-                          <Icon as={FaTimes} boxSize="4" />
-                          <strong>2</strong>
-                        </HStack>
-                        <Text
-                          as="span"
-                          fontSize="xl"
-                          fontWeight="bold"
-                          color="gray.400"
-                        >
-                          $1200
-                        </Text>
-                      </HStack>
-                      <Text fontSize="2xl">
-                        <strong>$600</strong>
-                      </Text>
-                    </HStack>
-                  </ModalBody>
-
-                  <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={onClose}>
-                      Close
-                    </Button>
-                    <Button variant="ghost">Secondary Action</Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
+              <MenuItemModal
+                isOpen={isOpen}
+                onClose={onClose}
+                item={currentItem}
+              />
             </Route>
             <Route path="/:establishment">
               <Establishment />
