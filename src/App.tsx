@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Button,
   Container,
@@ -96,31 +96,34 @@ function App() {
     <Container p="0" maxW="container.lg">
       <Layout>
         <Router>
-          <Switch>
-            <Route path="/" exact>
-              <Heading>Menú</Heading>
-              <VStack spacing={4}>
-                {items.map((item) => (
-                  <MenuItemCard
-                    key={item.id}
-                    item={item}
-                    onClick={() => {
-                      setCurrentItem(item);
-                      onOpen();
-                    }}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Heading>Menú</Heading>
+                  <VStack spacing={4}>
+                    {items.map((item) => (
+                      <MenuItemCard
+                        key={item.id}
+                        item={item}
+                        onClick={() => {
+                          setCurrentItem(item);
+                          onOpen();
+                        }}
+                      />
+                    ))}
+                  </VStack>
+                  <MenuItemModal
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    item={currentItem}
                   />
-                ))}
-              </VStack>
-              <MenuItemModal
-                isOpen={isOpen}
-                onClose={onClose}
-                item={currentItem}
-              />
-            </Route>
-            <Route path="/:establishment">
-              <Establishment />
-            </Route>
-          </Switch>
+                </>
+              }
+            />
+            <Route path="/:establishment" element={<Establishment />} />
+          </Routes>
         </Router>
       </Layout>
     </Container>
